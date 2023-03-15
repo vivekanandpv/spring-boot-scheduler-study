@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class ScheduledJobRunner {
     private final Logger logger = LoggerFactory.getLogger(ScheduledJobRunner.class);
 
-    @Scheduled(fixedDelay = 2000)   //  every 2 seconds
+    @Scheduled(fixedDelayString = "${app.scheduler.delay}")   //  every 2 seconds
     public void doJob() {
         logger.info(
                 String.format(
