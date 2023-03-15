@@ -29,10 +29,20 @@ public class ScheduledJobRunner {
     //  To configure this, in application.properties spring.task.scheduling.pool.size=n
     @Async
     @Scheduled(fixedRate = 2000)   //  every 2 seconds
-    public void doJob() {
+    public void doJob() throws InterruptedException {
         logger.info(
                 String.format(
                         "Thread %d is running scheduled job running at %s",
+                        Thread.currentThread().getId(),
+                        LocalDateTime.now()
+                )
+        );
+
+        Thread.sleep(5000);
+
+        logger.info(
+                String.format(
+                        "Thread %d completed scheduled job running at %s",
                         Thread.currentThread().getId(),
                         LocalDateTime.now()
                 )
