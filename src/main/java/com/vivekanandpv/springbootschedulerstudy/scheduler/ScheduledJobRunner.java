@@ -12,6 +12,8 @@ import java.time.LocalDateTime;
 public class ScheduledJobRunner {
     private final Logger logger = LoggerFactory.getLogger(ScheduledJobRunner.class);
 
+    //  scheduled methods are usually void methods, return value is ignored for non-void method
+    //  scheduled methods should not take any input parameters
     @Scheduled(fixedDelay = 2000)   //  every 2 seconds
     public void doJob() {
         logger.info(
