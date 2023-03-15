@@ -12,14 +12,17 @@ import java.time.LocalDateTime;
 public class ScheduledJobRunner {
     private final Logger logger = LoggerFactory.getLogger(ScheduledJobRunner.class);
 
-    //  scheduled methods are usually void methods, return value is ignored for non-void method
-    //  scheduled methods should not take any input parameters
-    @Scheduled(fixedDelay = 2000)   //  every 2 seconds
-    //  Delay between end of the previous and start of the next is fixed
-    //  ++++++++++++++____******* (fixed delay of 4 _ )
     //  Use fixedRate to start the next job irrespective of the completion of the previous task
     //  ++++++++++++++
     //  ____*******
+
+    //  When the jobs are running with fixedRate,
+    //  it is imperative not to wait till the completion of the previous job
+    //  What if the next job has to be started and previous is not yet complete?
+    //  We then opt for asynchronous scheduling with @Async
+    //  To enable, in the configuration of the scheduler, use @EnableAsync
+    @Async
+    @Scheduled(fixedRate = 2000)   //  every 2 seconds
     public void doJob() {
         logger.info(
                 String.format(
