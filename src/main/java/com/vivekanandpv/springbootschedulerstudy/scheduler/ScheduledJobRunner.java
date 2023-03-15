@@ -15,6 +15,11 @@ public class ScheduledJobRunner {
     //  scheduled methods are usually void methods, return value is ignored for non-void method
     //  scheduled methods should not take any input parameters
     @Scheduled(fixedDelay = 2000)   //  every 2 seconds
+    //  Delay between end of the previous and start of the next is fixed
+    //  ++++++++++++++____******* (fixed delay of 4 _ )
+    //  Use fixedRate to start the next job irrespective of the completion of the previous task
+    //  ++++++++++++++
+    //  ____*******
     public void doJob() {
         logger.info(
                 String.format(
