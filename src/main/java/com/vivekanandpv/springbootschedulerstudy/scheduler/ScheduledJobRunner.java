@@ -24,6 +24,9 @@ public class ScheduledJobRunner {
 
     //  IMPORTANT: In case the @Async is not used (or not enabled in the configuration)
     //  The next task will start after the end of the previous task, irrespective of the rate!
+
+    //  IMPORTANT: Spring uses scheduling thread pool, which curiously has the size of just 1!
+    //  To configure this, in application.properties spring.task.scheduling.pool.size=n
     @Async
     @Scheduled(fixedRate = 2000)   //  every 2 seconds
     public void doJob() {
