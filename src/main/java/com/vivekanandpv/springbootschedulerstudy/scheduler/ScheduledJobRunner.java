@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 public class ScheduledJobRunner {
     private final Logger logger = LoggerFactory.getLogger(ScheduledJobRunner.class);
 
+    //  For cron:
+    //  https://www.freeformatter.com/cron-expression-generator-quartz.html
+    //  https://crontab.cronhub.io/
     @Scheduled(cron = "${app.scheduler.cronexp}")   //  every 2 seconds
     public void doJob() {
         logger.info(
