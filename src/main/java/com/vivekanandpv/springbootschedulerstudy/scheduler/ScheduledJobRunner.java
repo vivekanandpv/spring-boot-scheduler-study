@@ -21,6 +21,9 @@ public class ScheduledJobRunner {
     //  What if the next job has to be started and previous is not yet complete?
     //  We then opt for asynchronous scheduling with @Async
     //  To enable, in the configuration of the scheduler, use @EnableAsync
+
+    //  IMPORTANT: In case the @Async is not used (or not enabled in the configuration)
+    //  The next task will start after the end of the previous task, irrespective of the rate!
     @Async
     @Scheduled(fixedRate = 2000)   //  every 2 seconds
     public void doJob() {
