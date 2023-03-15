@@ -12,7 +12,8 @@ import java.time.LocalDateTime;
 public class ScheduledJobRunner {
     private final Logger logger = LoggerFactory.getLogger(ScheduledJobRunner.class);
 
-    @Scheduled(fixedDelayString = "${app.scheduler.delay}")   //  every 2 seconds
+    //  also, initialDelay
+    @Scheduled(initialDelayString = "${app.scheduler.initial-delay}", fixedDelayString = "${app.scheduler.delay}")   //  initial delay of 5s then the delay specified
     public void doJob() {
         logger.info(
                 String.format(
