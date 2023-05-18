@@ -15,7 +15,10 @@ public class ScheduledJobRunner {
     //  For cron:
     //  https://www.freeformatter.com/cron-expression-generator-quartz.html
     //  https://crontab.cronhub.io/
-    @Scheduled(cron = "${app.scheduler.cronexp}")   //  every 2 seconds
+
+    //  Spring Cron:
+    //  https://spring.io/blog/2020/11/10/new-in-spring-5-3-improved-cron-expressions
+    @Scheduled(cron = "${app.scheduler.cronexp}")
     public void doJob() {
         logger.info(
                 String.format(
